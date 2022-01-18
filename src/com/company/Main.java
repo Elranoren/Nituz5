@@ -56,11 +56,13 @@ public class Main {
                     }
                     ac.setC_temp(chosenTemp);
                     break;
+                case "5":
+                    System.out.println("Bye Bye");
+                    break;
                 default:
                     System.out.println("Not a valid number please enter number between 1 and 5 inclusive.");
             }
         }
-        System.out.println("Bye Bye");
     }
 
 }
