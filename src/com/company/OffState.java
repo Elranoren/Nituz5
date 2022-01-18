@@ -2,6 +2,7 @@ package com.company;
 
 public class OffState implements AirConditionerStates {
     private AirConditioner airConditioner;
+
     public OffState(AirConditioner airConditioner) {
         this.airConditioner = airConditioner;
 
@@ -9,12 +10,13 @@ public class OffState implements AirConditionerStates {
 
     @Override
     public void on() {
-        airConditioner.setC_temp(25);
-        airConditioner.setR_temp(25);
+        airConditioner.c_temp = 25;
+        airConditioner.r_temp = 25;
         System.out.println("WAITING 30 SECONDS");
         System.out.println("ON");
-        airConditioner.setCurrMode(airConditioner.getCoolState());
-        airConditioner.setCurrState(airConditioner.getFanState());
+//        airConditioner.setCurrMode(airConditioner.getCoolState());
+        airConditioner.setCurrState(airConditioner.getCoolState());
+        airConditioner.getCurrState().fanning();
     }
 
     @Override
@@ -35,5 +37,15 @@ public class OffState implements AirConditionerStates {
     @Override
     public void fanning() {
         System.out.println("AIRCONDITIONER IS OFF");
+    }
+
+    @Override
+    public void set_temp() {
+        System.out.println("AIRCONDITIONER IS OFF");
+    }
+
+    @Override
+    public void printState() {
+        System.out.println("OFF");
     }
 }

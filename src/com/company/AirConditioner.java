@@ -3,66 +3,66 @@ package com.company;
 public class AirConditioner {
     private AirConditionerStates coolState;
     private AirConditionerStates heatState;
-    private AirConditionerStates fanState;
+//    private AirConditionerStates fanState;
     private AirConditionerStates offState;
-    private AirConditionerStates heatingState;
-    private AirConditionerStates coolingState;
+//    private AirConditionerStates heatingState;
+//    private AirConditionerStates coolingState;
 
     private AirConditionerStates currState;
     private AirConditionerStates currMode;
 
-    public double c_temp;
-    public double r_temp;
-
+    public int c_temp;
+    public int r_temp;
 
 
     public AirConditioner() {
         this.coolState = new CoolState(this);
         this.heatState = new HeatState(this);
-        this.fanState = new FannState(this);
+//        this.fanState = new FannState(this);
         this.offState = new OffState(this);
-        this.heatingState = new HeatingState(this);
-        this.coolingState = new CoolingState(this);
+//        this.heatingState = new HeatingState(this);
+//        this.coolingState = new CoolingState(this);
         this.currState = this.offState;
-        this.currMode = null;
+//        this.currMode = null;
         System.out.println("OFF");
     }
 
-    public void setC_temp(double temp){
-        this.c_temp = temp;
-    }
-
-    public void setR_temp(double temp){
-        this.r_temp = temp;
-    }
-
-    public void on(){
-        this.c_temp = 25;
-        this.r_temp = 25;
-        this.currState = this.fanState;
-        //System.out.println("WAITING 30 SECONDS");
-        //System.out.println("ON");
-        this.currState = this.coolState;
-        //System.out.println("MODE-COOL");
-        //System.out.println("OPERATION-FANNING (120 SECONDS AT LEAST)");
-
+    public void setC_temp(int temp) {
+        if(this.currState != this.offState){
+            System.out.println("set c_temp to " + temp);
+            this.c_temp = temp;
+        }
+        this.currState.set_temp();
 
     }
 
-    public void off(){
+    public void setR_temp(int temp) {
+        if(this.currState != this.offState) {
+            System.out.println("set r_temp to " + temp);
+            this.r_temp = temp;
+        }
+        this.currState.set_temp();
 
     }
 
-    public void heating(){
-
+    public void on() {
+        this.currState.on();
     }
 
-    public void cooling(){
-
+    public void off() {
+        this.currState.off();
     }
 
-    public void fanning(){
+    public void heating() {
+        this.currState.heating();
+    }
 
+    public void cooling() {
+        this.currState.cooling();
+    }
+
+    public void fanning() {
+        this.currState.fanning();
     }
 
     public AirConditionerStates getCurrState() {
@@ -70,6 +70,7 @@ public class AirConditioner {
     }
 
     public void setCurrState(AirConditionerStates currState) {
+        currState.printState();
         this.currState = currState;
     }
 
@@ -81,21 +82,21 @@ public class AirConditioner {
         return heatState;
     }
 
-    public AirConditionerStates getFanState() {
-        return fanState;
-    }
+//    public AirConditionerStates getFanState() {
+//        return fanState;
+//    }
 
     public AirConditionerStates getOffState() {
         return offState;
     }
 
-    public AirConditionerStates getHeatingState() {
-        return heatingState;
-    }
+//    public AirConditionerStates getHeatingState() {
+//        return heatingState;
+//    }
 
-    public AirConditionerStates getCoolingState() {
-        return coolingState;
-    }
+//    public AirConditionerStates getCoolingState() {
+//        return coolingState;
+//    }
 
     public AirConditionerStates getCurrMode() {
         return currMode;

@@ -7,5 +7,7 @@ public interface AirConditionerStates {
     void cooling();
     void heating();
     void fanning();
+    void set_temp();
+    void printState();
 
 }
